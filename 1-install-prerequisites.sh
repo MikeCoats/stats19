@@ -1,4 +1,8 @@
 #!/bin/bash
 
 sudo apt install \
-	curl
+	curl \
+	python3 \
+	python3-pip
+
+pip install xlsx2csv
