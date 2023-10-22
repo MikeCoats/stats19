@@ -10,5 +10,5 @@ indent_size = 4
 [*.sh]
 indent_style = tab
 
-[*.sql]
+[*.sql, *.yml]
 indent_style = space
