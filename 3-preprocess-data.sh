@@ -67,5 +67,5 @@ for meta in local_authority_district \
 	local_authority_ons_district \
 	local_authority_highway; do
 	echo "Preprocessing $meta metadata..."
-	grep ",$meta," ./tmp/metadata.csv | cut -d',' -f3- | sed 's/,*$//g' | sed 's/\"//g' >"./data/$meta.csv"
+	grep ",$meta," ./tmp/metadata.csv | cut -d',' -f3- | sed 's/,*$//g' >"./data/$meta.csv"
 done
