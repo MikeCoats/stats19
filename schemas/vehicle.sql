@@ -1,0 +1,33 @@
+drop table if exists vehicle;
+create table vehicle (
+    accident_index                      text    references collision (accident_index),
+    accident_year                       integer not null,
+    accident_reference                  text    not null,
+    vehicle_reference                   integer not null,
+    vehicle_type                        integer not null references vehicle_type (id),
+    towing_and_articulation             integer not null references towing_and_articulation (id),
+    vehicle_manoeuvre                   integer not null references vehicle_manoeuvre (id),
+    vehicle_direction_from              integer not null references vehicle_direction_from (id),
+    vehicle_direction_to                integer not null references vehicle_direction_to (id),
+    vehicle_location_restricted_lane    integer not null references vehicle_location_restricted_lane (id),
+    junction_location                   integer not null references junction_location (id),
+    skidding_and_overturning            integer not null references skidding_and_overturning (id),
+    hit_object_in_carriageway           integer not null references hit_object_in_carriageway (id),
+    vehicle_leaving_carriageway         integer not null references vehicle_leaving_carriageway (id),
+    hit_object_off_carriageway          integer not null references hit_object_off_carriageway (id),
+    first_point_of_impact               integer not null references first_point_of_impact (id),
+    vehicle_left_hand_drive             integer not null references vehicle_left_hand_drive (id),
+    journey_purpose_of_driver           integer not null references journey_purpose_of_driver (id),
+    sex_of_driver                       integer not null references sex_of_driver (id),
+    age_of_driver                       integer not null,
+    age_band_of_driver                  integer not null references age_band_of_driver (id),
+    engine_capacity_cc                  integer not null,
+    propulsion_code                     integer not null references propulsion_code (id),
+    age_of_vehicle                      integer not null,
+    generic_make_model                  text    not null,
+    driver_imd_decile                   integer not null references driver_imd_decile (id),
+    driver_home_area_type               integer not null references driver_home_area_type (id),
+    lsoa_of_driver                      text    not null,
+
+    primary key (accident_index, vehicle_reference)
+);
