@@ -15,7 +15,7 @@ jobs:
             - name: Download stats19 metadata and data
               run: ./2-download-stats19.sh
             - name: Preprocess data
-              run: ./3-preprocess.data.sh
+              run: ./3-preprocess-data.sh
             - name: Create tables
               run: ./4-create-tables.sh
             - name: Import data
