@@ -11,12 +11,12 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
             - name: Install prerequisites
-              run: 1-install-prerequisites.sh
+              run: ./1-install-prerequisites.sh
             - name: Download stats19 metadata and data
-              run: 2-download-stats19.sh
+              run: ./2-download-stats19.sh
             - name: Preprocess data
-              run: 3-preprocess.data.sh
+              run: ./3-preprocess.data.sh
             - name: Create tables
-              run: 4-create-tables.sh
+              run: ./4-create-tables.sh
             - name: Import data
-              run: 5-import-data.sh
+              run: ./5-import-data.sh

@@ -1,5 +1,14 @@
 # stats19
 
+## Building the `stats19.sqlite` database
+
+```sh
+./1-install-prerequisites.sh; \
+    ./2-download-stats19.sh && \
+    ./3-preprocess-data.sh && \
+    ./4-create-tables.sh && \
+    ./5-import-data.sh
+```
 ## Licenses
 
 Unless stated otherwise, the `stats19` project is released under the
