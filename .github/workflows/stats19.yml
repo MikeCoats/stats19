@@ -20,3 +20,8 @@ jobs:
               run: ./4-create-tables.sh
             - name: Import data
               run: ./5-import-data.sh
+            - name: Upload database
+              uses: actions/upload-artifact@v3
+              with:
+                name: stats19
+                path: ./stats19.sqlite
