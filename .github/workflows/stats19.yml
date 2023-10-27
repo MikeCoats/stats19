@@ -34,6 +34,9 @@ jobs:
     bundle_stats19:
         needs: build_stats19
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
         steps:
             - name: Download database
               uses: actions/download-artifact@v3
