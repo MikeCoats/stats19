@@ -9,6 +9,19 @@
     ./4-create-tables.sh && \
     ./5-import-data.sh
 ```
+
+## Bundling the `stats19.sqlite` and `datasette` into a docker image
+
+```sh
+docker build --tag stats19:latest .
+```
+
+## Create and run the stats19 docker container
+
+```sh
+docker run --detach --publish 8001:8001 stats19:latest
+```
+
 ## Licenses
 
 Unless stated otherwise, the `stats19` project is released under the
