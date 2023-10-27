@@ -1,6 +1,6 @@
 FROM python:3.12-slim-bookworm
 
-RUN pip install -U datasette
+RUN pip install --no-cache-dir --upgrade datasette
 
 RUN groupadd -r stats19 && useradd --no-log-init -r -g stats19 stats19
 RUN mkdir -p /srv/stats19 && chown stats19:stats19 /srv/stats19
