@@ -29,6 +29,7 @@ jobs:
                 name: stats19
                 path: ./stats19.sqlite
     bundle_stats19:
+        needs: build_stats19
         runs-on: ubuntu-latest
         steps:
             - name: Download database
