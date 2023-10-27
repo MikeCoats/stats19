@@ -27,7 +27,10 @@ jobs:
               uses: actions/upload-artifact@v3
               with:
                 name: stats19
-                path: ./stats19.sqlite
+                path: |
+                  ./stats19.sqlite
+                  ./Dockerfile
+                  ./metadata.json
     bundle_stats19:
         needs: build_stats19
         runs-on: ubuntu-latest
