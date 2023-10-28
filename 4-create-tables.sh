@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 for meta in accident_severity \
 	age_band_of_casualty \
 	age_band_of_driver \
@@ -51,8 +53,8 @@ for meta in accident_severity \
 	vehicle_type \
 	weather_conditions; do
 	sqlite3 stats19.sqlite <<-EOF_META
-		drop table if exists $meta;
-		create table $meta (
+		drop table if exists ${meta};
+		create table ${meta} (
 			id          integer primary key,
 			description text    not null
 		);
@@ -61,8 +63,8 @@ done
 
 for meta in local_authority_highway local_authority_ons_district; do
 	sqlite3 stats19.sqlite <<-EOF_META_TEXT
-		drop table if exists $meta;
-		create table $meta (
+		drop table if exists ${meta};
+		create table ${meta} (
 			id          text primary key,
 			description text    not null
 		);
@@ -70,7 +72,7 @@ for meta in local_authority_highway local_authority_ons_district; do
 done
 
 for table in collision vehicle casualty; do
-	sqlite3 ./stats19.sqlite <"./schemas/$table.sql"
+	sqlite3 ./stats19.sqlite <"./schemas/${table}.sql"
 done
 
 

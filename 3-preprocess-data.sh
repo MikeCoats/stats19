@@ -1,9 +1,11 @@
 #!/bin/bash
 
+set -euo pipefail
+
 for year in $(seq 2018 2022); do
 	for table in collision vehicle casualty; do
-		echo "Preprocessing $year $table data..."
-		tail -n +2 "./tmp/$table-$year.csv" >"./data/$table-$year.csv"
+		echo "Preprocessing ${year} ${table} data..."
+		tail -n +2 "./tmp/${table}-${year}.csv" >"./data/${table}-${year}.csv"
 	done
 done
 
@@ -56,8 +58,8 @@ for meta in accident_severity \
 	casualty_type \
 	casualty_imd_decile \
 	casualty_home_area_type; do
-	echo "Preprocessing $meta metadata..."
-	grep ",$meta," ./tmp/metadata.csv | cut -d',' -f3-4 >"./data/$meta.csv"
+	echo "Preprocessing ${meta} metadata..."
+	grep ",${meta}," ./tmp/metadata.csv | cut -d',' -f3-4 >"./data/${meta}.csv"
 done
 
 for meta in local_authority_district \
@@ -66,6 +68,6 @@ for meta in local_authority_district \
 	pedestrian_movement \
 	local_authority_ons_district \
 	local_authority_highway; do
-	echo "Preprocessing $meta metadata..."
-	grep ",$meta," ./tmp/metadata.csv | cut -d',' -f3- | sed 's/,*$//g' >"./data/$meta.csv"
+	echo "Preprocessing ${meta} metadata..."
+	grep ",${meta}," ./tmp/metadata.csv | cut -d',' -f3- | sed 's/,*$//g' >"./data/${meta}.csv"
 done

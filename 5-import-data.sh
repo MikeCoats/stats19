@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 for meta in accident_severity \
 	police_force \
 	day_of_week \
@@ -54,7 +56,7 @@ for meta in accident_severity \
 	local_authority_highway; do
 	sqlite3 stats19.sqlite <<-EOF_META_IMPORT
 		.mode csv
-		.import ./data/$meta.csv $meta
+		.import ./data/${meta}.csv ${meta}
 	EOF_META_IMPORT
 done
 
@@ -62,7 +64,7 @@ for year in $(seq 2018 2022); do
 	for table in collision vehicle casualty; do
 		sqlite3 stats19.sqlite <<-EOF_DATA_IMPORT
 			.mode csv
-			.import ./data/$table-$year.csv $table
+			.import ./data/${table}-${year}.csv ${table}
 		EOF_DATA_IMPORT
 	done
 done
