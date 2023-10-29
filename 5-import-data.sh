@@ -2,9 +2,7 @@
 
 set -euo pipefail
 
-rm -f data.sql
-
-cat <<-EOF_MODE >> data.sql
+cat <<-EOF_MODE >> script.sql
 	.mode csv
 EOF_MODE
 
@@ -60,17 +58,17 @@ for meta in accident_severity \
 	vehicle_manoeuvre \
 	vehicle_type \
 	weather_conditions; do
-	cat <<-EOF_META_IMPORT >> data.sql
+	cat <<-EOF_META_IMPORT >> script.sql
 		.import ./data/${meta}.csv ${meta}
 	EOF_META_IMPORT
 done
 
 for year in $(seq 2018 2022); do
 	for table in collision vehicle casualty; do
-		cat <<-EOF_DATA_IMPORT  >> data.sql
+		cat <<-EOF_DATA_IMPORT  >> script.sql
 			.import ./data/${table}-${year}.csv ${table}
 		EOF_DATA_IMPORT
 	done
 done
 
-sqlite3 stats19.sqlite <data.sql
+sqlite3 stats19.sqlite <script.sql

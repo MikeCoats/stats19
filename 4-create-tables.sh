@@ -2,7 +2,9 @@
 
 set -euo pipefail
 
-rm -f tables.sql
+cat <<-EOF_START >script.sql
+	PRAGMA journal_mode=MEMORY;
+EOF_START
 
 for meta in accident_severity \
 	age_band_of_casualty \
@@ -54,7 +56,7 @@ for meta in accident_severity \
 	vehicle_manoeuvre \
 	vehicle_type \
 	weather_conditions; do
-	cat <<-EOF_META >>tables.sql
+	cat <<-EOF_META >>script.sql
 		drop table if exists ${meta};
 		create table ${meta} (
 			id          integer primary key,
@@ -64,7 +66,7 @@ for meta in accident_severity \
 done
 
 for meta in local_authority_highway local_authority_ons_district; do
-	cat <<-EOF_META_TEXT >>tables.sql
+	cat <<-EOF_META_TEXT >>script.sql
 		drop table if exists ${meta};
 		create table ${meta} (
 			id          text primary key,
@@ -74,7 +76,5 @@ for meta in local_authority_highway local_authority_ons_district; do
 done
 
 for table in collision vehicle casualty; do
-	cat <"./schemas/${table}.sql" >>tables.sql
+	cat <"./schemas/${table}.sql" >>script.sql
 done
-
-sqlite3 stats19.sqlite <tables.sql
