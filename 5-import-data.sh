@@ -2,6 +2,12 @@
 
 set -euo pipefail
 
+rm -f data.sql
+
+cat <<-EOF_MODE >> data.sql
+	.mode csv
+EOF_MODE
+
 for meta in accident_severity \
 	age_band_of_casualty \
 	age_band_of_driver \
@@ -54,17 +60,17 @@ for meta in accident_severity \
 	vehicle_manoeuvre \
 	vehicle_type \
 	weather_conditions; do
-	sqlite3 stats19.sqlite <<-EOF_META_IMPORT || true
-		.mode csv
+	cat <<-EOF_META_IMPORT >> data.sql
 		.import ./data/${meta}.csv ${meta}
 	EOF_META_IMPORT
 done
 
 for year in $(seq 2018 2022); do
 	for table in collision vehicle casualty; do
-		sqlite3 stats19.sqlite <<-EOF_DATA_IMPORT || true
-			.mode csv
+		cat <<-EOF_DATA_IMPORT  >> data.sql
 			.import ./data/${table}-${year}.csv ${table}
 		EOF_DATA_IMPORT
 	done
 done
+
+sqlite3 stats19.sqlite <data.sql
