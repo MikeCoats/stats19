@@ -3,7 +3,7 @@
 set -euo pipefail
 
 cat <<-EOF_START >script.sql
-	PRAGMA journal_mode=MEMORY;
+	pragma journal_mode=memory;
 EOF_START
 
 for meta in accident_severity \

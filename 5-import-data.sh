@@ -71,4 +71,8 @@ for year in $(seq 2018 2022); do
 	done
 done
 
-sqlite3 stats19.sqlite <script.sql
+cat <<-EOF_END >>script.sql
+	vacuum main into './stats19.sqlite';
+EOF_END
+
+sqlite3 ':memory:' <script.sql || true
