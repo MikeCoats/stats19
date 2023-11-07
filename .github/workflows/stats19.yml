@@ -23,6 +23,8 @@ jobs:
               run: ./4-create-tables.sh
             - name: Import data
               run: ./5-import-data.sh
+            - name: Test the data
+              run: ./6-test-import.sh | tappy
             - name: Upload database
               uses: actions/upload-artifact@v3
               with:
