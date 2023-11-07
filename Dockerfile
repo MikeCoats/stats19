@@ -1,4 +1,4 @@
-FROM python:3.12-slim-bookworm
+FROM python:slim
 
 RUN pip install --no-cache-dir --upgrade datasette
 

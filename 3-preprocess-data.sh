@@ -10,7 +10,10 @@ for year in $(seq 2018 2022); do
 done
 
 echo "Preprocessing metadata..."
+# shellcheck disable=SC1091
+source ./venv/bin/activate
 xlsx2csv ./tmp/metadata.xlsx ./tmp/metadata.csv
+deactivate
 
 for meta in accident_severity \
 	age_band_of_casualty \

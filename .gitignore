@@ -1,4 +1,5 @@
 .vscode/
+venv/
 
 # Ignore this as it's a >200MB binary that can be reliably rebuilt.
 stats19.sqlite
