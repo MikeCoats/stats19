@@ -31,6 +31,11 @@ jobs:
                 name: stats19
                 path: |
                   ./stats19.sqlite
+            - name: Upload configuration
+              uses: actions/upload-artifact@v3
+              with:
+                name: stats19-config
+                path: |
                   ./Dockerfile
                   ./metadata.json
     bundle_stats19:
@@ -44,6 +49,11 @@ jobs:
               uses: actions/download-artifact@v3
               with:
                 name: stats19
+                path: ./
+            - name: Download configuration
+              uses: actions/download-artifact@v3
+              with:
+                name: stats19-config
                 path: ./
             - name: Log in to the Container registry
               uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
