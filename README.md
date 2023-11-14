@@ -7,7 +7,8 @@
     ./2-download-stats19.sh && \
     ./3-preprocess-data.sh && \
     ./4-create-tables.sh && \
-    ./5-import-data.sh
+    ./5-import-data.sh && \
+    ./6-test-import.sh | tappy
 ```
 
 ## Bundling the `stats19.sqlite` and `datasette` into a docker image
