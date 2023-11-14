@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-sudo apt update && apt install \
+sudo apt update && sudo apt install \
 	curl \
 	python3 \
 	python3-pip \
