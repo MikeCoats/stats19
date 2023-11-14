@@ -72,7 +72,7 @@ for year in $(seq 2018 2022); do
 done
 
 cat <<-EOF_END >>script.sql
-	vacuum main into './stats19.sqlite';
+	vacuum main into './stats19.db';
 EOF_END
 
 sqlite3 ':memory:' <script.sql || true

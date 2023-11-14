@@ -1,6 +1,6 @@
 # stats19
 
-## Building the `stats19.sqlite` database
+## Building the `stats19.db` database
 
 ```sh
 ./1-install-prerequisites.sh; \
@@ -11,7 +11,7 @@
     ./6-test-import.sh | tappy
 ```
 
-## Bundling the `stats19.sqlite` and `datasette` into a docker image
+## Bundling the `stats19.db` and `datasette` into a docker image
 
 ```sh
 docker build --tag stats19:latest .

@@ -7,9 +7,9 @@ RUN mkdir -p /srv/stats19 && chown stats19:stats19 /srv/stats19
 USER stats19:stats19
 WORKDIR /srv/stats19
 
-COPY ./stats19.sqlite .
+COPY ./stats19.db .
 COPY ./metadata.json .
-RUN datasette inspect stats19.sqlite >inspect.json
+RUN datasette inspect stats19.db >inspect.json
 
 EXPOSE 8001
 
@@ -19,5 +19,5 @@ CMD ["datasette", \
     "--inspect-file", "inspect.json", \
     "--metadata", "metadata.json", \
     "--cors", "--nolock", \
-    "--immutable", "stats19.sqlite" \
+    "--immutable", "stats19.db" \
 ]

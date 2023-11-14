@@ -30,7 +30,7 @@ jobs:
               with:
                 name: stats19
                 path: |
-                  ./stats19.sqlite
+                  ./stats19.db
             - name: Upload configuration
               uses: actions/upload-artifact@v3
               with:

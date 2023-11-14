@@ -8,7 +8,7 @@ echo "1..55"
 for data in casualty collision vehicle; do
 
 	data_csv=$(cat "./data/${data}-"*.csv | wc -l)
-	data_sql=$(sqlite3 stats19.sqlite <<<"select count(1) from ${data};")
+	data_sql=$(sqlite3 stats19.db <<<"select count(1) from ${data};")
 	[[ "${data_csv}" == "${data_sql}" ]] && echo "ok" || echo "not ok - ${data}"
 
 done
@@ -63,7 +63,7 @@ for meta in accident_severity \
 	pedestrian_movement; do
 
 	meta_csv=$(wc -l <"./data/${meta}.csv")
-	meta_sql=$(sqlite3 stats19.sqlite <<<"select count(1) from ${meta};")
+	meta_sql=$(sqlite3 stats19.db <<<"select count(1) from ${meta};")
 	[[ "${meta_csv}" == "${meta_sql}" ]] && echo "ok" || echo "not ok - ${meta}"
 
 done
@@ -74,7 +74,7 @@ for meta in police_force \
 	local_authority_ons_district; do
 
 	meta_csv=$(wc -l <"./data/${meta}.csv")
-	meta_sql=$(sqlite3 stats19.sqlite <<<"select count(1) from ${meta};")
+	meta_sql=$(sqlite3 stats19.db <<<"select count(1) from ${meta};")
 	[[ "${meta_csv}" == "${meta_sql}" ]] && echo "ok" || echo "not ok - ${meta} #skip"
 
 done
